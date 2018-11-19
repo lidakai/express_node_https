@@ -1,10 +1,9 @@
 const { app, conn_fn } = require("../../app");
 // 获取所有的数据
-app.get("/api/getheros", (req, res) => {
+app.get("/api/program", (req, res) => {
   // 定义SQL语句
   let conn = conn_fn();
-
-  const sqlStr = "SELECT * FROM user";
+  const sqlStr = "SELECT * FROM program";
   conn.query(sqlStr, (err, results) => {
     if (err)
       return res.json({
@@ -18,7 +17,7 @@ app.get("/api/getheros", (req, res) => {
       msg: "成功"
     });
   });
-  // 关闭连接池
+
   conn.end(function(err){
     // Do something after the connection is gracefully terminated.
     conn.destroy();

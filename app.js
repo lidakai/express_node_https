@@ -1,13 +1,28 @@
-const express = require('express')
-const { conn }  = require('./server')
+const express = require("express");
+const { conn_fn } = require("./server");
+const app = express();
 
-const app = express()
-app.listen(8088, ()=>{
-    // 打印一下
-    console.log('http://127.0.0.1:8088')
-})  
+const router = [{url:"/api/getheros",title:'用户列表'}, {url:"/api/program",title:'爬取数据'}];
+
+let html_ = '';
+
+router.forEach(element => {
+    html_+= `
+    <a href='${element.url}'>${element.title}</a><br>
+    `
+});
+
+app.listen(8088, () => {
+  // 打印一下
+
+  app.get("/", (req, res) =>
+    res.send(html_)
+  );
+
+  console.log("http://127.0.0.1:8088");
+});
 
 module.exports = {
-    app,
-    conn,
-}
+  app,
+  conn_fn
+};

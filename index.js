@@ -1,7 +1,9 @@
 const getheros = require('./pages/getheros/index')
+const qingting = require('./pages/qingting/index')
 
 function start(){
-    getheros
+    getheros,
+    qingting
 }
 
 
